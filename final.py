@@ -3,11 +3,16 @@ import string
 import pandas as pd
 import numpy as np
 
-data = pd.read_csv("/Users/mmourya23/Downloads/Team+Time+Preference+-+Fall+Indoor_December+6,+2021_14.59.csv")
+# Importing data from csv file (U-REC real qualdratics input)
+data = pd.read_csv(r"C:\Users\mlie23\Downloads\Team+Time+Preference_December+6,+2021_14.56.csv")
 
+# Q4_1 to Q4_7 represents Monday - Sunday
+# Q7 = name of the sport 
+# Q1 = Data of the teams
 columns = ["Q7","Q1","Q4_1","Q4_2","Q4_3","Q4_4","Q4_5","Q4_6","Q4_7"]
 
 data2 = pd.DataFrame(data= data, columns=columns)
+
 data2 = data2.drop([0,1])
 
 list_unique = data2.Q7.unique()
@@ -94,9 +99,19 @@ def check (newTimeList, teams1):
                 graph[i][j] = graph[j][i] = 1
     return graph 
 
+
+# Bipartite algorithm
+# Arguments:
+#           1.Graph:   Consist of 2D lists that store the possible matches between all team
+#                      size of list= n*n (where n is the number of teams)
+#           2.Team:    index of the number of the team
+#           3.matches: default = -1, reprents index of the team. (If they have match, then -1 will 
+#                      change to the number of the team they are playing against)
+#                      EX: [-1,3,-1,1] => Team no.1 will be playing with team no.3
+#           4.isPlaying: Checking if one team has played another team or not
+#                        Then it will check if a team can play another team or not
 def findPossibleMatch(graph, team, matches, isPlaying):
     for i in range(len(graph)):
-        # print(matches)
         if (graph[team][i] == 1) and (isPlaying[i] == False) and (team != i):
             isPlaying[i] = True
             if matches[i] == -1 or matches[i] == team or findPossibleMatch(graph, matches[i], matches, isPlaying):
@@ -104,6 +119,8 @@ def findPossibleMatch(graph, team, matches, isPlaying):
                 matches[i] = team
                 return True
     return False
+
+
 
 def filter(graph):
     noOfTeams = len(graph)
@@ -122,7 +139,6 @@ def filter(graph):
     return pairing
 
 final_matches = (filter(check(newTimeList, teams1)))
-
 for i in range(len(final_matches)):
     print(teams1[i], " Vs. ", final_matches[i])
 
