@@ -2,23 +2,24 @@ import random
 import string
 import pandas as pd
 
-class teams:
-   def __init__(self,timeslot = None, name=None):
-        if timeslot is None:
-            timeslot = []
-        self.timeslot = timeslot
+# class teams:
+#    def __init__(self,timeslot = None, name=None):
+#         if timeslot is None:
+#             timeslot = []
+#         self.timeslot = timeslot
 
-        if name is None:
-            name = ''.join(random.choices(string.ascii_uppercase+string.digits, k=5))
-        self.name = name
+#         if name is None:
+#             name = ''.join(random.choices(string.ascii_uppercase+string.digits, k=5))
+#         self.name = name
     
-class graph:
-   def __init__(self,graph):
-      self.graph = graph
-# Get the keys of the dictionary
-   def getVertices(self):
-      return list(self.gdict.keys())
+# class graph:
+#    def __init__(self,graph):
+#       self.graph = graph
+# # Get the keys of the dictionary
+#    def getVertices(self):
+#       return list(self.gdict.keys())
 
+# function to get the keys from dictionary (which are lists in our case)
 def getList(dict):
     return dict.keys()
 
@@ -76,7 +77,7 @@ dayNumber = int(input())
 # creates the object that has dictionary with teams and times
 newTimeList = timeList(gameNumber,dayNumber)
 
-# convert newTimeList dictionary to list of lists
+# keys = lists
 teams1 = list(getList(newTimeList))
 
 # find the common time between two teams
