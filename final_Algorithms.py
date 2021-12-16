@@ -49,9 +49,7 @@ for i in list_unique:
 
 # rename the days columns for the ease of user input (it's in int)
 for i in range(0,len(game)): 
-    game[i] = game[i].rename(columns={
-        "Q4_1":1,"Q4_2":2,"Q4_3":3,"Q4_4":4,"Q4_5":5,"Q4_6":6,"Q4_7":7}
-        )
+    game[i] = game[i].rename(columns={"Q4_1":1,"Q4_2":2,"Q4_3":3,"Q4_4":4,"Q4_5":5,"Q4_6":6,"Q4_7":7})
 
 # Return =
 # { "a":["3:30","4:30"],
