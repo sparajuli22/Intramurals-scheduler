@@ -1,6 +1,7 @@
 import random 
 import string
 import pandas as pd
+import xlsxwriter
 
 # class teams:
 #    def __init__(self,timeslot = None, name=None):
@@ -150,4 +151,38 @@ final_matches = (filter(check(newTimeList, teams1)))
 for i in range(len(final_matches)):
     if final_matches[i]!="No match":
         print(teams1[i], " Vs. ", final_matches[i])
-        print (common_time(newTimeList[teams1[i]], newTimeList[final_matches[i]]))
+        print (common_time(newTimeList[teams1[i]], newTimeList[final_matches[i]]),"\n")
+
+# print the entire schedule to excel
+count = 1
+for a in range (0,5):
+    for days in range (1,8):
+        newTimeList = timeList(a,days)
+        teams1 = list(getList(newTimeList))
+        def filter(graph):
+            noOfTeams = len(graph)
+            matches = [-1] * noOfTeams
+            for team in range(len(graph)):
+                isPlaying = [False] * noOfTeams
+                isPlaying[team] = True
+                findPossibleMatch(graph, team, matches, isPlaying)
+            # get the index of the keys in dict
+            list_index = list(newTimeList)
+            pairing = []
+            for i in matches:
+                pairing.append('No match') if i == -1 else pairing.append(list_index[i])
+            return pairing
+        final_matches = (filter(check(newTimeList, teams1)))
+        workbook = xlsxwriter.Workbook('Result'+str(count)+'.xlsx')
+        worksheet = workbook.add_worksheet()
+        worksheet.write (0,0, "Team Name")
+        worksheet.write (0,1, "Time")
+        row = 1
+        for i in range(((len(final_matches))+1//2)):
+            if final_matches[i]!="No match":
+                worksheet.write (row,0, str(teams1[i])+" vs "+ str(final_matches[i]))
+                listoftime = common_time(newTimeList[teams1[i]], newTimeList[final_matches[i]])
+                worksheet.write (row,1, str(listoftime))
+                row+=1
+        count+=1
+        workbook.close()
