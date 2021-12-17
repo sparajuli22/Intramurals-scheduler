@@ -3,22 +3,6 @@ import string
 import pandas as pd
 import xlsxwriter
 
-# class teams:
-#    def __init__(self,timeslot = None, name=None):
-#         if timeslot is None:
-#             timeslot = []
-#         self.timeslot = timeslot
-
-#         if name is None:
-#             name = ''.join(random.choices(string.ascii_uppercase+string.digits, k=5))
-#         self.name = name
-    
-# class graph:
-#    def __init__(self,graph):
-#       self.graph = graph
-# # Get the keys of the dictionary
-#    def getVertices(self):
-#       return list(self.gdict.keys())
 
 # function to get the keys from dictionary (which are lists in our case)
 def getList(dict):

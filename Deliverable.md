@@ -30,6 +30,16 @@ For now:
     2. U-Rec will not change the way they gather all the data (Qualdratics Survey)
     3. Each team needs to have game at least 1-2x
     4. This is only generated for regular season (excluding playoffs)
+## Functions:
+1. Check: returning a (n)^2 2Dimensional list where n is the number of teams
+2. common: Finding common time between 2 teams through boolean (pairing compatibilty [True/False])
+3. filter: Returning a list of size (number of team) that is set to -1 as default
+4. findpossiblematch: Checking the pairing compatibility of each teams and change the value of -1 to the index of the team that each team is playing against
+5. common_time : After finding the compatible pairings and it has been stabilized, then common time between two teams will be determined
+6. Others:
+    * Reading and Printing the data to excel sheet
+    * Panda commands
+
 
 ## Works Cited:
 1. https://www.geeksforgeeks.org/maximum-bipartite-matching/ (Bipartite matching explenation)
@@ -37,5 +47,6 @@ For now:
 3. Panda library 
    
 
-
+## Accomplishment:
+We have contacted the U-Rec and they agreed to use this program next semester. It will help the efficiency of creating a stable schedule.
 
